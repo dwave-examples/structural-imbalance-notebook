@@ -92,6 +92,6 @@ def global_signed_social_network():
             group_id = int(group_id)
 
             if group_id in S:
-                S.node[group_id]['map'] = map_name
+                S.nodes[group_id]['map'] = map_name
 
     return S
