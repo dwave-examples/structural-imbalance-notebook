@@ -18,7 +18,7 @@ from nbconvert.preprocessors import ExecutePreprocessor
 
 def run_jn(jn):
     
-    open_jn = open(jn, "r")
+    open_jn = open(jn, "r", encoding='utf-8')
     notebook = nbformat.read(open_jn, nbformat.current_nbformat)
     open_jn.close()
         
