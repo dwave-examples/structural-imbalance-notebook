@@ -22,8 +22,21 @@ jn_file = os.path.join(jn_dir, '01-structural-imbalance-overview.ipynb')
 
 class TestJupyterNotebook(unittest.TestCase):
     
-    def test_error_free_execution(self):
+    def test_jn(self):
+        # Smoketest
         nb, errors = run_jn(jn_file)
         self.assertEqual(errors, [])
-        
+
+        # Test cell outputs:
+        # Section A Toy Example, code cell 1
+        self.assertIn("Alice", nb["cells"][5]["outputs"][0]["text"])
+
+        # Section A Toy Example, subsection Solving the Problem, code cell 1
+        self.assertIn("Yellow", nb["cells"][9]["outputs"][0]["text"])
+
+        # Section A Real-World Example, first code cell with output
+        self.assertIn("Aleppo", nb["cells"][18]["outputs"][0]["text"])
+
+        # Section A Real-World Example, second code cell with text output
+        self.assertIn("sign", nb["cells"][24]["outputs"][0]["text"])
 
