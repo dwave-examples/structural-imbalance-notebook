@@ -15,7 +15,7 @@
 import os
 import unittest
 
-import jn_run
+from tests.jn_run import run_jn
 
 jn_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 jn_file = os.path.join(jn_dir, '01-structural-imbalance-overview.ipynb')
@@ -23,7 +23,7 @@ jn_file = os.path.join(jn_dir, '01-structural-imbalance-overview.ipynb')
 class TestJupyterNotebook(unittest.TestCase):
     
     def test_error_free_execution(self):
-        nb, errors = jn_run.run_jn(jn_file)
+        nb, errors = run_jn(jn_file)
         self.assertEqual(errors, [])
         
 
