@@ -17,13 +17,13 @@ import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 import unittest
 
-def run_jn(jn):
+def run_jn(jn, timeout):
     
     open_jn = open(jn, "r", encoding='utf-8')
     notebook = nbformat.read(open_jn, nbformat.current_nbformat)
     open_jn.close()
         
-    preprocessor = ExecutePreprocessor(timeout=100, kernel_name='python3')
+    preprocessor = ExecutePreprocessor(timeout=timeout, kernel_name='python3')
     preprocessor.allow_errors = True    
     preprocessor.preprocess(notebook, {'metadata': {'path': os.path.dirname(jn)}})
 
@@ -32,7 +32,10 @@ def run_jn(jn):
         if 'outputs' in cell:
             for output in cell['outputs']:
                 if output.output_type == 'error':
-                    errors.append(output)
+                    if output.evalue == 'no embedding found':
+                        return notebook, ["Embedding failed"]
+                    else:
+                        errors.append(output)
 
     return notebook, errors
 
@@ -43,7 +46,15 @@ class TestJupyterNotebook(unittest.TestCase):
     
     def test_jn(self):
         # Smoketest
-        nb, errors = run_jn(jn_file)
+        MAX_EMBEDDING_RETRIES = 3
+        MAX_RUN_TIME = 100
+
+        run_num = 1
+        nb, errors = run_jn(jn_file, MAX_RUN_TIME)
+        while errors == ['Embedding failed'] and run_num < MAX_EMBEDDING_RETRIES:
+            run_num += 1
+            nb, errors = run_jn(jn_file, MAX_RUN_TIME)
+
         self.assertEqual(errors, [])
 
         # Test cell outputs:
