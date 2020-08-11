@@ -13,9 +13,28 @@
 # limitations under the License.
 
 import os
+import nbformat
+from nbconvert.preprocessors import ExecutePreprocessor
 import unittest
 
-from tests.jn_run import run_jn
+def run_jn(jn):
+    
+    open_jn = open(jn, "r", encoding='utf-8')
+    notebook = nbformat.read(open_jn, nbformat.current_nbformat)
+    open_jn.close()
+        
+    preprocessor = ExecutePreprocessor(timeout=100, kernel_name='python3')
+    preprocessor.allow_errors = True    
+    preprocessor.preprocess(notebook, {'metadata': {'path': os.path.dirname(jn)}})
+
+    errors = []
+    for cell in notebook.cells:
+        if 'outputs' in cell:
+            for output in cell['outputs']:
+                if output.output_type == 'error':
+                    errors.append(output)
+
+    return notebook, errors
 
 jn_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 jn_file = os.path.join(jn_dir, '01-structural-imbalance-overview.ipynb')
