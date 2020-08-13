@@ -53,6 +53,8 @@ def robust_run_jn(jn, timeout, retries):
 
     return notebook, errors
 
+def cell_text(nb, cell):
+    return nb["cells"][cell]["outputs"][0]["text"]
 
 jn_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 jn_file = os.path.join(jn_dir, '01-structural-imbalance-overview.ipynb')
@@ -70,14 +72,14 @@ class TestJupyterNotebook(unittest.TestCase):
 
         # Test cell outputs:
         # Section A Toy Example, code cell 1
-        self.assertIn("Alice", nb["cells"][5]["outputs"][0]["text"])
+        self.assertIn("Alice", cell_text(nb, 5))
 
         # Section A Toy Example, subsection Solving the Problem, code cell 1
-        self.assertIn("Yellow", nb["cells"][9]["outputs"][0]["text"])
+        self.assertIn("Yellow", cell_text(nb, 9))
 
         # Section A Real-World Example, first code cell with output
-        self.assertIn("Aleppo", nb["cells"][18]["outputs"][0]["text"])
+        self.assertIn("Aleppo", cell_text(nb, 18))
 
         # Section A Real-World Example, second code cell with text output
-        self.assertIn("sign", nb["cells"][24]["outputs"][0]["text"])
+        self.assertIn("sign", cell_text(nb, 24))
 
