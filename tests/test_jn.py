@@ -41,9 +41,7 @@ def collect_jn_errors(nb):
     return errors
 
 def embedding_fail(error_list):
-    if error_list != [] and error_list[0].evalue == 'no embedding found':
-        return True
-    return False
+    return error_list and 'no embedding found' in error_list
 
 def robust_run_jn(jn, timeout, retries):
 
@@ -87,4 +85,3 @@ class TestJupyterNotebook(unittest.TestCase):
 
         # Section A Real-World Example, second code cell with text output
         self.assertIn("sign", cell_text(nb, 24))
-
