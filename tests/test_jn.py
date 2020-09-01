@@ -40,13 +40,16 @@ def collect_jn_errors(nb):
 
     return errors
 
+def embedding_fail(error_list):
+    return error_list and 'no embedding found' in error_list
+
 def robust_run_jn(jn, timeout, retries):
 
     run_num = 1
     notebook = run_jn(jn, timeout)
     errors = collect_jn_errors(notebook)
 
-    while 'no embedding found' in errors and run_num < retries:
+    while embedding_fail(errors) and run_num < retries:
         run_num += 1
         notebook = run_jn(jn, timeout)
         errors = collect_jn_errors(notebook)
@@ -82,4 +85,3 @@ class TestJupyterNotebook(unittest.TestCase):
 
         # Section A Real-World Example, second code cell with text output
         self.assertIn("sign", cell_text(nb, 24))
-
