@@ -24,7 +24,12 @@ from bokeh.models import (
     Plot, Range1d, MultiLine, Circle, HoverTool, WheelZoomTool, ZoomInTool, ZoomOutTool, PanTool,
     Row, LabelSet, ColumnDataSource
 )
-from bokeh.models.graphs import from_networkx, EdgesAndLinkedNodes
+from bokeh.models.graphs import EdgesAndLinkedNodes
+try:
+    from bokeh.plotting import from_networkx
+except ImportError:
+    # handle bokeh<=1.4.0 (Python 3.5 and earlier)
+    from bokeh.models.graphs import from_networkx
 
 
 # call output_notebook once on import, so we don't reload bokeh every time.
