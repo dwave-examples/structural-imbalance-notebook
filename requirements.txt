@@ -4,5 +4,3 @@ jupyter
 jupyter_contrib_nbextensions
 autopep8
 bokeh<3
-
-nbconvert==5.6.1
