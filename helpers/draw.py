@@ -83,28 +83,18 @@ def draw(S, position=None, with_labels=False):
         node_color = ['#FFFFFF' for __ in nodelist]
         edge_style = "solid"
 
-    circle_size = 50
+    circle_size = 200
 
     positions = layout_wrapper(S)
+
+
+
+    nx.draw_networkx_edges(S, pos=position, edgelist=edgelist,
+                           edge_color=edge_color, style=edge_style)
+    nodes = nx.draw_networkx_nodes(S, pos=position, node_color=node_color,
+                                   node_size=circle_size)
     if with_labels:
-        data = {
-            'xpos': [],
-            'ypos': [],
-            'label': []
-        }
-        for label, pos in positions.items():
-            data['label'].append(label)
-            data['xpos'].append(pos[0])
-            data['ypos'].append(pos[1])
-
-        labels = LabelSet(x='xpos', y='ypos', text='label',
-                        level='glyph', source=ColumnDataSource(data),
-                        x_offset=-5, y_offset=10, text_color="#F5F7FB", text_font_size='12pt')
-        plot.add_layout(labels)
-
-    nx.draw_networkx_edges(S, pos=position, edgelist=edgelist, edge_color=edge_color, style=edge_style)
-    nodes = nx.draw_networkx_nodes(S, pos=position, node_color=node_color, node_size=circle_size)
-    nx.draw_networkx_labels(S, pos=position)
+        nx.draw_networkx_labels(S, pos=position)
 
     plt.show()
 
