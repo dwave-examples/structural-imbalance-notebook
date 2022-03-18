@@ -28,6 +28,9 @@ jupyter notebook
 ```
 
 [^1]: Leap's IDE, which runs VS Code, does not support all notebook extensions.
+      Also, using the `matplotlib` package in interactive mode (with the
+      `%matplotlib ipympl` code line) can degrade performance; it is recommended
+      you switch that line to `%matplotlib inline` where noted in the notebook.
 
 ## License
 
