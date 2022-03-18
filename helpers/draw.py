@@ -15,6 +15,7 @@
 from collections import defaultdict
 from itertools import product
 
+import matplotlib.pyplot as plt
 import networkx as nx
 
 def draw(S, position=None, with_labels=False):
@@ -65,12 +66,17 @@ def draw(S, position=None, with_labels=False):
                 # default to circular layout if nodes aren't colored
                 pos = nx.circular_layout(S)
         return pos
+
     # call layout wrapper once with all nodes to store position for calls with partial graph
     position = layout_wrapper(S)
 
-    fig, ax = plt.subplots(figsize=(8, 8))
+    if len(S) > 50:
+        fig, ax = plt.subplots(figsize=(12, 12))
+    else:
+        fig, ax = plt.subplots(figsize=(8, 8))
     ax.set_ylim([-1.2, 1.2])
     ax.set_xlim([-1.2, 1.2])
+    ax.set_facecolor('#202239')
 
     # get the colors assigned to each edge based on friendly/hostile
     edge_color = ['#87DACD' if S[u][v]['sign'] == 1 else '#FC9291' for u, v in edgelist]
@@ -94,7 +100,8 @@ def draw(S, position=None, with_labels=False):
     nodes = nx.draw_networkx_nodes(S, pos=position, node_color=node_color,
                                    node_size=circle_size)
     if with_labels:
-        nx.draw_networkx_labels(S, pos=position)
+        nx.draw_networkx_labels(S, pos=position, font_size=20, font_color="white",
+                                horizontalalignment="right", verticalalignment="top")
 
     plt.show()
 
