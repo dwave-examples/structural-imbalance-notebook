@@ -77,6 +77,7 @@ def draw(S, position=None, with_labels=False):
     ax.set_ylim([-1.2, 1.2])
     ax.set_xlim([-1.2, 1.2])
     ax.set_facecolor('#202239')
+    circle_size = 200
 
     # get the colors assigned to each edge based on friendly/hostile
     edge_color = ['#87DACD' if S[u][v]['sign'] == 1 else '#FC9291' for u, v in edgelist]
@@ -89,19 +90,38 @@ def draw(S, position=None, with_labels=False):
         node_color = ['#FFFFFF' for __ in nodelist]
         edge_style = "solid"
 
-    circle_size = 200
-
-    positions = layout_wrapper(S)
-
-
-
-    nx.draw_networkx_edges(S, pos=position, edgelist=edgelist,
-                           edge_color=edge_color, style=edge_style)
-    nodes = nx.draw_networkx_nodes(S, pos=position, node_color=node_color,
-                                   node_size=circle_size)
+    nx.draw_networkx_nodes(S, pos=position, node_color=node_color, node_size=circle_size)
+    edge_collect = nx.draw_networkx_edges(S, pos=position, edgelist=edgelist,
+                                          edge_color=edge_color, style=edge_style)
     if with_labels:
         nx.draw_networkx_labels(S, pos=position, font_size=20, font_color="white",
                                 horizontalalignment="right", verticalalignment="top")
+
+    annotation = ax.annotate("", xy=(0, 0), xytext=(-1.2, 1.1), textcoords="data", color="blue",
+                             bbox=dict(fc="white"))
+    annotation.set_visible(False)
+
+    ind_edges = list(S.edges())
+    def update_annotation(ind):
+        edge = ind_edges[ind["ind"][0]]
+        text = [S.edges[edge]['event_year']]
+        text.append(S.edges[edge]['event_description'])
+        annotation.set_text(f"{text[0]} \n{text[1]}")
+
+    def hover(event):
+        visibility = annotation.get_visible()
+        if event.inaxes == ax:
+            cont, ind = edge_collect.contains(event)
+            if cont:
+                update_annotation(ind)
+                annotation.set_visible(True)
+                fig.canvas.draw_idle()
+            else:
+                if visibility:
+                    annotation.set_visible(False)
+                    fig.canvas.draw_idle()
+
+    fig.canvas.mpl_connect("motion_notify_event", hover)
 
     plt.show()
 
