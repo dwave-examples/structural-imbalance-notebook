@@ -125,4 +125,4 @@ def draw(S, position=None, with_labels=False):
 
     plt.show()
 
-    return positions
+    return position
