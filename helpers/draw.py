@@ -87,7 +87,7 @@ def draw(S, position=None, with_labels=False):
         node_color = ['#4378F8' if nodelist[v]['color'] else '#FFE897' for v in nodelist]
         edge_style = ['dashed' if S[u][v]['frustrated'] else 'solid' for u, v in edgelist]
     except KeyError:
-        node_color = ['#FFFFFF' for __ in nodelist]
+        node_color = ['white'] * len(nodelist)
         edge_style = "solid"
 
     nx.draw_networkx_nodes(S, pos=position, node_color=node_color, node_size=circle_size)
