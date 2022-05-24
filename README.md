@@ -19,7 +19,7 @@ The notebook has the following sections:
 
 *Social networks* map relationships between people or organizations onto graphs,
 with the people/organizations as nodes and relationships as edges; for example,
-Facebook friends form a social network. *Signed social networks* map both friendly
+friends form a social network. *Signed social networks* map both friendly
 and hostile relationships by assigning to edges either positive or negative values.
 Such networks are said to be *structurally balanced* when they can be cleanly
 divided into two sets, with each set containing only friends, and all relations
