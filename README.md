@@ -2,7 +2,7 @@
   https://circleci.com/gh/dwave-examples/structural-imbalance-notebook.svg?style=svg)](
   https://circleci.com/gh/dwave-examples/structural-imbalance-notebook)
 
-# Structural Imbalance Jupyter Notebook
+# Structural Imbalance 
 
 This notebook explains the quantum processing unit (QPU) programming model used for
 calculating structural imbalance in signed social networks, and shows how to implement
