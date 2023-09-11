@@ -56,27 +56,11 @@ Alternatively, install requirements locally (ideally, in a virtual environment):
 
 ## Usage
 
-To enable notebook extensions[^1]:
-
-```bash
-jupyter contrib nbextension install --sys-prefix
-jupyter nbextension enable toc2/main
-jupyter nbextension enable exercise/main
-jupyter nbextension enable exercise2/main
-jupyter nbextension enable python-markdown/main
-
-```
-
 To run the notebook:
 
 ```bash
 jupyter notebook
 ```
-
-[^1]: Leap's IDE, which runs VS Code, does not support all notebook extensions.
-      Also, using the `matplotlib` package in interactive mode (with the
-      `%matplotlib ipympl` code line) can degrade performance; it is recommended
-      you switch that line to `%matplotlib inline` where noted in the notebook.
 
 ## License
 
