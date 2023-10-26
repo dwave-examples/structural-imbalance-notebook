@@ -47,10 +47,8 @@ folding, traffic flow optimization, job-shop scheduling, and many more.
 
 ## Installation
 
-You can run this example
-[in the Leap IDE](https://ide.dwavesys.io/#https://github.com/dwave-examples/structural-imbalance-notebook).
-
-Alternatively, install requirements locally (ideally, in a virtual environment):
+If you cloned the repository to your local system (ideally, in a virtual 
+environment), install requirements:
 
     pip install -r requirements.txt
 
