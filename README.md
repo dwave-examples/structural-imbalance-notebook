@@ -56,9 +56,16 @@ requirements:
 
     pip install -r requirements.txt
 
+If you are cloning the repo to your local system, working in a 
+[virtual environment](https://docs.python.org/3/library/venv.html) is 
+recommended.
+
 ## Usage
 
-To run the notebook:
+The notebook can be opened by clicking on the 
+``01-structural-imbalance-overview.ipynb`` file in Codespaces. 
+
+To run a locally installed notebook:
 
 ```bash
 jupyter notebook
