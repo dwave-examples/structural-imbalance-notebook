@@ -47,8 +47,12 @@ folding, traffic flow optimization, job-shop scheduling, and many more.
 
 ## Installation
 
-If you cloned the repository to your local system (ideally, in a virtual 
-environment), install requirements:
+You can run this example without installation in cloud-based IDEs that support 
+the [Development Containers specification](https://containers.dev/supporting)
+(aka "devcontainers") such as [GitHub Codespaces](https://docs.github.com/codespaces).
+
+For development environments that do not support ``devcontainers``, install 
+requirements:
 
     pip install -r requirements.txt
 
