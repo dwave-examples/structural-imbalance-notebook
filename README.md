@@ -46,7 +46,7 @@ folding, traffic flow optimization, job-shop scheduling, and many more.
 
 You can run this example without installation in cloud-based IDEs that support 
 the [Development Containers specification](https://containers.dev/supporting)
-(aka "devcontainers") such as [GitHub Codespaces](https://docs.github.com/codespaces).
+(aka "devcontainers").
 
 For development environments that do not support ``devcontainers``, install 
 requirements:
@@ -64,9 +64,8 @@ Your development environment should be configured to
 You can see information about supported IDEs and authorizing access to your 
 Leap account [here](https://docs.dwavesys.com/docs/latest/doc_leap_dev_env.html).  
 
-
 The notebook can be opened by clicking on the 
-``01-structural-imbalance-overview.ipynb`` file in Codespaces. 
+``01-structural-imbalance-overview.ipynb`` file in VS Code-based IDEs. 
 
 To run a locally installed notebook:
 
