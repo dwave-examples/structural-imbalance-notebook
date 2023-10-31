@@ -1,3 +1,6 @@
+[![Open in GitHub Codespaces](
+  https://img.shields.io/badge/Open%20in%20GitHub%20Codespaces-333?logo=github)](
+  https://codespaces.new/dwave-examples/structural-imbalance-notebook?quickstart=1)
 [![Linux/Mac/Windows build status](
   https://circleci.com/gh/dwave-examples/structural-imbalance-notebook.svg?style=shield)](
   https://circleci.com/gh/dwave-examples/structural-imbalance-notebook)
